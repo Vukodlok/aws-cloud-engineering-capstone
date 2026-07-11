@@ -1,3 +1,6 @@
+# Environment names are restricted to approved deployment stages
+# to prevent inconsistent resource naming and accidental deployments
+# to unintended environments.
 variable "environment" {
   description	 = "Deployment environment"
   type		 = string
