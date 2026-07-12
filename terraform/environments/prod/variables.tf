@@ -39,3 +39,8 @@ variable "private_availability_zone" {
     description = "Availability Zone for the private subnet"
     type        = string
 }
+
+variable "instance_type" {
+    description = "EC2 instance type"
+    type        = string
+}
