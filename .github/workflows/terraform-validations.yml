@@ -1,0 +1,31 @@
+# Validates Terraform formatting and configuration on every push
+# and pull request to help catch errors before deployment.
+name: Terraform Validation
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    terraform:
+        name: Terraform Validation
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: Check Terraform formatting    
+              run: terraform fmt -check -recursive
+
+            - name: Initialize Terraform
+              run: terraform init
+              working-directory: terraform/environments/prod
+
+            - name: Validate Terraform configuration
+              run: terraform validate
+              working-directory: terraform/environments/prod
