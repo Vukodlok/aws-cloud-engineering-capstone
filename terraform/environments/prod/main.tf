@@ -1,28 +1,28 @@
 provider "aws" {
-    region = var.aws_region
+  region = var.aws_region
 }
 
 module "network" {
-    source = "../../modules/network"
+  source = "../../modules/network"
 
-    environment = var.environment
+  environment = var.environment
 
-    vpc_cidr = var.vpc_cidr
+  vpc_cidr = var.vpc_cidr
 
-    public_subnet_cidr = var.public_subnet_cidr
-    private_subnet_cidr = var.private_subnet_cidr
+  public_subnet_cidr  = var.public_subnet_cidr
+  private_subnet_cidr = var.private_subnet_cidr
 
-    public_availability_zone = var.public_availability_zone
-    private_availability_zone = var.private_availability_zone
+  public_availability_zone  = var.public_availability_zone
+  private_availability_zone = var.private_availability_zone
 }
 
 module "compute" {
-    source = "../../modules/compute"
+  source = "../../modules/compute"
 
-    environment = var.environment
+  environment = var.environment
 
-    vpc_id = module.network.vpc_id
-    subnet_id = module.network.private_subnet_id
+  vpc_id    = module.network.vpc_id
+  subnet_id = module.network.private_subnet_id
 
-    instance_type = var.instance_type
+  instance_type = var.instance_type
 }
