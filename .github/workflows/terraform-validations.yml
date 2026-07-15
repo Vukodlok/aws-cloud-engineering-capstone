@@ -3,33 +3,36 @@
 name: Terraform Validation
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-    terraform:
-        name: Terraform Validation
-        runs-on: ubuntu-latest
+  terraform:
+    name: Terraform Validation
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+    defaults:
+      run:
+        working-directory: terraform/environments/prod
 
-            - name: Setup Terraform
-              uses: hashicorp/setup-terraform@v3
+    steps:
+      
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-            - name: Check Terraform formatting    
-              run: terraform fmt -check -recursive
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
 
-            - name: Initialize Terraform
-              run: terraform init
-              working-directory: terraform/environments/prod
+    - name: Terraform version
+      run: terraform version
 
-            - name: Validate Terraform configuration
-              run: terraform validate
-              working-directory: terraform/environments/prod
+    - name: Check Terraform formatting    
+      run: terraform fmt -check -recursive
 
-            - name: Generate Terraform execution plan
-              run: terraform plan -input=false -var-file="terraform.tfvars.example"
-              working-directory: terraform/environments/prod
+    - name: Initialize Terraform
+      run: terraform init -backend=false
+
+    - name: Validate Terraform configuration
+      run: terraform validate
