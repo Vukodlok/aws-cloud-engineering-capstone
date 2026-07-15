@@ -29,3 +29,7 @@ jobs:
             - name: Validate Terraform configuration
               run: terraform validate
               working-directory: terraform/environments/prod
+
+            - name: Generate Terraform execution plan
+              run: terraform plan -input=false
+              working-directory: terraform/environments/prod
