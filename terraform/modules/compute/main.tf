@@ -1,6 +1,7 @@
 # EC2 uses this IAM role to securely obtain temporary AWS credentials
 # instead of storing long-lived access keys on the instance, 
 # which would create unnecessary security risks. 
+/* This resource remains documented but is removed due to sandbox restrictions.
 resource "aws_iam_role" "ec2_role" {
   name = "${var.environment}-ec2-role"
 
@@ -19,20 +20,22 @@ resource "aws_iam_role" "ec2_role" {
       }
     ]
   })
-}
+}*/
 
 # The instance profile allows the EC2 instance to use the IAM role. 
+/* This resource remains documented but is removed due to sandbox restrictions.
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "${var.environment}-ec2-instance-profile"
   role = aws_iam_role.ec2_role.name
-}
+}*/
 
 # Attach the AWS-managed Systems Manager policy so the EC2 instance
 # can register with Systems Manager and be managed without SSH. 
-resource "aws_iam_role_policy_attachment" "ssm_core" {
+# This resource remains documented but is removed due to sandbox restrictions.
+/*resource "aws_iam_role_policy_attachment" "ssm_core" {
   role       = aws_iam_role.ec2_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
+}*/
 
 # Security group protecting the EC2 instance.
 # No inbound traffic is allowed because administration is performed 
@@ -83,8 +86,8 @@ resource "aws_instance" "main" {
   vpc_security_group_ids = [
     aws_security_group.ec2.id
   ]
-
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+# This resource remains documented but is removed due to sandbox restrictions.
+#  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
 
   tags = {
     Name        = "${var.environment}-server"
