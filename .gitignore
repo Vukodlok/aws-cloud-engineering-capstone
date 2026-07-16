@@ -5,6 +5,10 @@
 *.tfstate
 *.tfstate.*
 
+# Terraform plans
+*.tfplan
+prod-initial-plan
+
 # Crash log files
 crash.log
 crash.*.log
