@@ -22,3 +22,11 @@ module "compute" {
 
   instance_type = var.instance_type
 }
+
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  environment        = var.environment
+  instance_id        = module.compute.instance_id
+  notification_email = var.notification_email
+}

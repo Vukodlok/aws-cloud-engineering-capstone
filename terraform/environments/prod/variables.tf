@@ -44,3 +44,9 @@ variable "instance_type" {
   description = "EC2 instance type"
   type        = string
 }
+
+variable "notification_email" {
+  description = "Email address for SNS notifications"
+
+  type = string
+}
