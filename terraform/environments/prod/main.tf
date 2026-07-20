@@ -30,3 +30,10 @@ module "monitoring" {
   instance_id        = module.compute.instance_id
   notification_email = var.notification_email
 }
+
+module "storage" {
+  source = "../../modules/storage"
+
+  environment  = var.environment
+  project_name = "cloud-engineering-capstone"
+}
