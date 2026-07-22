@@ -165,3 +165,94 @@ aws-cloud-engineering-capstone/
 | `terraform.tfvars.example` | Provides example configuration values without sensitive information |
 
 The modular Terraform structure allows infrastructure components to be independently maintained, tested, and reused across multiple environments while keeping resource configuration separate from environment-specific values.
+
+## Deployment Workflow
+
+The infrastructure deployment process is designed around Infrastructure as Code principles. All AWS resources are defined using Terraform configuration files and deployed through a controlled workflow.
+
+The general deployment workflow is:
+
+```text
+Developer
+    |
+    v
+GitHub Repository
+    |
+    v
+GitHub Actions Validation
+    |
+    ├── Terraform Format Check
+    ├── Terraform Initialization
+    └── Terraform Validation
+    |
+    v
+Terraform Plan Review
+    |
+    v
+Terraform Apply
+    |
+    v
+AWS Infrastructure Deployment
+```
+
+### Terraform Deployment Process
+
+1. Clone the repository:
+
+```bash
+git clone <https://github.com/Vukodlok/aws-cloud-engineering-capstone.git>
+cd aws-cloud-engineering-capstone
+```
+
+2. Navigate to the desired environment:
+
+```bash
+cd terraform/environments/prod
+```
+
+3. Initialize Terraform:
+
+```bash
+terraform init
+```
+
+4. Validate the Terraform configuration:
+
+```bash
+terraform validate
+```
+
+5. Review the planned infrastructure changes:
+
+```bash
+terraform plan
+```
+
+6. Deploy the infrastructure:
+
+```bash
+terraform apply
+```
+
+7. Verify deployed resources:
+
+```bash
+terraform output
+terraform state list
+```
+
+---
+
+## CI/CD Validation Workflow
+
+The repository includes a GitHub Actions workflow that automatically validates Terraform configuration changes.
+
+The workflow performs:
+
+- Terraform formatting checks
+- Terraform initialization
+- Terraform configuration validation
+
+This ensures infrastructure changes are reviewed before deployment and reduces the risk of configuration errors reaching the deployment stage.
+
+Because this project was developed using an AWS Academy sandbox environment, deployment execution remained a controlled manual process using temporary AWS credentials. In a production environment, this workflow would be extended using secure AWS authentication methods such as OpenID Connect (OIDC) federation for automated Terraform deployments without long-lived credentials.
