@@ -112,7 +112,7 @@ The final architecture includes the following AWS components:
 
 ## Repository Structure
 
-The repository is organized to separate infrastructure components, deployment environments, documentation, and supporting project resources. This structure follows Terraform best practices by using reusable modules and environment-specific configurations.
+The repository is organized to separate infrastructure components, deployment environments, documentation, and supporting project resources.  This structure follows Terraform best practices by using reusable modules and environment-specific configurations.
 
 ```text
 aws-cloud-engineering-capstone/
@@ -168,7 +168,7 @@ The modular Terraform structure allows infrastructure components to be independe
 
 ## Deployment Workflow
 
-The infrastructure deployment process is designed around Infrastructure as Code principles. All AWS resources are defined using Terraform configuration files and deployed through a controlled workflow.
+The infrastructure deployment process is designed around Infrastructure as Code principles.  All AWS resources are defined using Terraform configuration files and deployed through a controlled workflow.
 
 The general deployment workflow is:
 
@@ -255,7 +255,7 @@ The workflow performs:
 
 This ensures infrastructure changes are reviewed before deployment and reduces the risk of configuration errors reaching the deployment stage.
 
-Because this project was developed using an AWS Academy sandbox environment, deployment execution remained a controlled manual process using temporary AWS credentials. In a production environment, this workflow would be extended using secure AWS authentication methods such as OpenID Connect (OIDC) federation for automated Terraform deployments without long-lived credentials.
+Because this project was developed using an AWS Academy sandbox environment, deployment execution remained a controlled manual process using temporary AWS credentials.  In a production environment, this workflow would be extended using secure AWS authentication methods such as OpenID Connect (OIDC) federation for automated Terraform deployments without long-lived credentials.
 
 ## Architecture Decisions
 
@@ -372,7 +372,7 @@ Production environments may use additional controls such as:
 
 ## Project Evidence
 
-The following screenshots provide evidence of deployed AWS resources and automation workflows. Screenshots are organized by architecture component within the repository.
+The following screenshots provide evidence of deployed AWS resources and automation workflows.  Screenshots are organized by architecture component within the repository.
 
 ---
 
@@ -453,3 +453,90 @@ Included workflow checks:
 Evidence:
 
 - [View Automation Screenshots](screenshots/automation/)
+
+## Limitations and Future Improvements
+
+This project was developed within an AWS Academy sandbox environment.  While the sandbox provided the ability to design and deploy AWS infrastructure using Terraform, several production-level features were limited by account permissions, resource lifecycle constraints, and project scope.
+
+The following improvments represent recommended next steps for a production implementation.
+
+---
+
+### Automated AWS Authentication
+
+The original design included GitHub Actions executing Terraform deployments automatically using secure AWS authentication.
+
+Due to AWS Academy sanbox restrictions, IAM administrative permissions required for configuring OpenID Connect (OIDC) federation were unavailable.
+
+Future implementation:
+
+- Configure GitHub Actions OIDC authentication with AWS IAM
+- Remove dependency on long-lived AWS credentials
+- Allow secure automated Terraform plan and apply workflows
+- Maintain auditable infrastructure changes through source control
+
+---
+
+### IAM Role Integration
+
+The original architecture included IAM roles and AWS Systems Manager Session Manager for secure EC2 administration.
+
+The production design would include:
+
+- IAM role attached through an EC2 instance profile
+- AWS Systems Manager Session Manager access
+- Temporary AWS-managed credentials
+- Removal of SSH key-based administration
+
+IAM implementation was documented in the architecture design but could not be deployed due to sandbox permission restrictions.
+
+---
+
+### High Availability Architecture
+
+The current implementation uses a simplified single Availability Zone design to remain within project scope and sandbox constraints.
+
+A production architecture would expand to include:
+
+- Multiple Availability Zones
+- Redundant public and private subnets
+- Load balancing across instances
+- Increased fault tolerance
+
+---
+
+### NAT Gateway Implementation
+
+A NAT Gateway was excluded from the final deployment due to sandbox cost considerations and project scope.
+
+A production implementation would include:
+
+- NAT Gateway deployed in the public subnet
+- Private subnet route configuration
+- Controlled outbound internet access for private workloads
+
+This would allow private resources to retrieve updates and communicate with external services without exposing them to inbound internet traffic.
+
+---
+
+### Additional Security Controls
+
+Future security improvements could include:
+
+- AWS Key Management Service (KMS) customer-managed encryption keys
+- AWS CloudTrail auditing
+- AWS Config compliance monitoring
+- Enhanced IAM policies following least privilege principles
+- Additional network security controls
+
+---
+
+### Multi-Environment Deployment
+
+The Terraform strucutre was designed to support mulitple environments:
+
+- Development
+- Staging
+- Production
+
+The current implementation focuses on the production environment as the demonstration deployment.  Future expansions would deploy identical infrastructure patterns across additional environments using separate variable configurations.
