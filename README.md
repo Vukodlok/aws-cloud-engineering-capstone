@@ -636,8 +636,8 @@ These constraints were documented as architectural decisions rather than treated
 
 Additional project documentation and resources are available in this repository:
 
-- [Final Project Paper](documentation/final-project-paper.pdf)
-- [Project Proposal](documentation/project-proposal.pdf)
+- [Final Project Paper](documentation/AWS Cloud Engineering Capstone Project Final Report.pdf)
+- [Project Proposal](documentation/AWS Cloud Engineering Capstone Project Proposal.pdf)
 - [Architecture Diagrams](diagrams/)
 - [Deployment Evidence](screenshots/)
 
