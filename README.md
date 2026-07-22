@@ -256,3 +256,116 @@ The workflow performs:
 This ensures infrastructure changes are reviewed before deployment and reduces the risk of configuration errors reaching the deployment stage.
 
 Because this project was developed using an AWS Academy sandbox environment, deployment execution remained a controlled manual process using temporary AWS credentials. In a production environment, this workflow would be extended using secure AWS authentication methods such as OpenID Connect (OIDC) federation for automated Terraform deployments without long-lived credentials.
+
+## Architecture Decisions
+
+This project was designed using AWS Well-Architected Framework principles, with a focus on security, operational excellence, and repeatable infrastructure deployment.
+
+The following architectural decisions were made during development.
+
+---
+
+### Infrastructure as COde with Terraform
+
+Terraform was selected as the infrastructure provisioning tool because it enables consistent, repeatable, and version-controlled AWS deployments.
+
+Benefits of this approach include:
+
+- Reduced manual configuration errors
+- Reusable infrastructure modules
+- Consistent deployment across environments
+- Auditable infrastructure changes through version control
+
+The Terraform configuration is organized using reusable modules for networking, compute, monitoring, and storage.
+
+---
+
+### Modular Terraform Design
+
+The project uses a modular Terraform structure to separate infrastructure components by responsibility.
+
+Implemented modules include:
+
+- `network` - VPC, subnets, route tables, and Internet Gateway
+- `compute` - EC2 instance and security group configuration
+- `monitoring` - CloudWatch logs, alarms, and SNS notifications
+- `storage` - S3 bucket configuration and encryption
+
+This structure improves maintainability and allows future expansion into additional environments such as development and staging.
+
+---
+
+### Network Segmentation
+
+The architecture uses separate public and private subnets within an AMazon VPC.
+
+The design follows defense-in-depth principles:
+
+- Public subnet resources can communicate with external services through an Internet Gateway.
+- Private subnet resources remain isolated from direct inbound internet access.
+- Security groups enforce controlled network communication.
+
+In a production environment, private workloads would typically span multiple Availability Zones to improve resilience and availability.
+
+---
+
+### EC2 Security Design
+
+The EC2 instance design follows least-privilege security principles.
+
+The implementation includes:
+
+- No unnecessary inbound access rules
+- Explicit outbound HTTPS access
+- Security group rules managed through Terraform
+- Infrastructure deployed through code rather than manual configuration
+
+The original design included IAM roles and AWS Susyems Manager Session Manager to provide secure administrative access without SSH keys or exposed inbound ports.
+
+Due to AWS Academy sandbox permission restrictions, IAM role creation could not be fully implemented during deployment.  The recommended production architecture retinas this design using IAM roles and temporary AWS-managed credentials.
+
+--- 
+
+### NAT Gateway Decision
+
+A NAT Gateway was intentionally excluded from the final implementation.
+
+In a production environment, a NAT Gateway would provide controlled outbound internet access for private resources while maintaining inbound isolation.  This would support activities such as:
+
+- Operating system updates
+- Package installation
+- External API communication
+
+The AWS Academy sandbox environment and project scope made the additional cost and resource requirements unnecessary for this implementation.
+
+---
+
+### CI/CD Tool Selection
+
+The original design considered AWS native CI/CD including CodePipeline, CodeBuild, and CodeDeploy.
+
+The final implementation uses GitHub Actions because it more closely reflects common industry workflow where inffrastructure code is stored and validated directly from source control.
+
+GitHub Actions provides:
+
+- Automated Terraform validation
+- Version-controlled workflows
+- Integration with pull requests
+- Clear audit history of infrastructure changes
+For production deployment, GitHub Actions would be extended with AWS OIDC authentication to enable secure automated Terraform execution.
+
+---
+
+### Storage Security
+
+Amazon S3 was implemented as the project's storage solution.
+
+The bucket uses server-side encryption with AES-256 to protect data at rest while maintaining compatibility with the AWS sandbox environment.
+
+Production environments may use additional controls such as:
+
+- Customer managed KMS keys
+- Bucket policies
+- Object versioning
+- Lifecycle policies
+- Access logging
