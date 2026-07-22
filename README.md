@@ -29,5 +29,35 @@ The infrastructure is organized into reusable Terraform modules:
 
 ## Business Problem
 
-A small company needs a secure and repeatable cloud environment that can be deployed consistently across development, staging, and production without relying on manual configuration.  Manual deployments increase the risk of configuration drift, security vulnerabilities, and human error.  The business also lacks automated monitoring and alerting, requiring engineers to manually check system health.  An automated system would allow for engineers to respond only when operational issues occur.  Finally, infrastructure changes must be deployed through a controlled and auditable process that validates changes before they reach production, where only approved and tested infrastructure modifications are implemented.
+Small organizations often face challenges when adopting cloud infrastructure, including inconsistent manual deployments, limited operational visibility, and difficulty maintaining secure and repeatable environments.
+
+This project addresses these challenges by designing an automated AWS environment that provides:
+
+- Consistent infrastructure deployment through Infrastructure as Code (IaC)
+- Improved security posture through network segmentation and least-privilege design
+- Operational visibility through automated monitoring and alerting
+- Controlled infrastructure changes through version control and automated validation
+
+The solution was designed around two primary AWS Well_architected Framework pillars:
+
+- **Security** - protecting resources through controlled access, network isolation, and secure configuration practices
+- **Operational Excellence** - enabling reliable operations through automation, monitoring, and repeatable processes
+
+---
+
+## Project Objectives
+
+The goal of this project was to create a production-style AWS environment that  demonstrates practical cloud engineering skills.
+
+The primary objectes were:
+
+| Objective | Implementation |
+|-----------|----------------|
+| Automate infrastructure deployment | Terraform modules for AWS resource  provisioning |
+| Create a secure network foundation | Amazon VPC with public/private subnet separation |
+| Deploy cloud compute resources | Amazon EC2 infrastructure managed through Terraform |
+| Implement monitoring and alerting | Amazon CloudWatch metrics, logs, alarms, and SNS notifications |
+| Secure cloud storage | Amazon S3 bucket with server-side encryption |
+| Validate infrastructure architecture | GitHub Actions Terraform validation workflow |
+| Maintain reusable architecture | Modular Terraform structure supporting multiple environments |
 
