@@ -540,3 +540,77 @@ The Terraform strucutre was designed to support mulitple environments:
 - Production
 
 The current implementation focuses on the production environment as the demonstration deployment.  Future expansions would deploy identical infrastructure patterns across additional environments using separate variable configurations.
+
+## Testing and Validation
+
+Infrastructure changes were validated throughout the development process using Terraform validation workflows and AWS resource verification.
+
+The following validation steps were performed:
+
+---
+
+### Terraform Configuration Validation
+
+Terraform configuration was tested using built-in validation commands:
+
+```bash
+terraform fmt
+terraform validate
+terraform plan
+```
+
+These checks verified:
+
+- Terraform syntax correctness
+- Provider configuration
+- Module references
+- Resource dependency resolution
+- Planned infrastructure changes before deployment
+
+---
+
+### Infrastructure Deployment Validation
+
+After successful Terraform deployment, AWS resources were verified through both Terraform state management and the AWS Management Console.
+
+Validation included:
+
+- Confirming Terraform successfully created AWS resources
+- Reviewing Terraform outputs
+- Verifying resource configuration in AWS Console
+- Capturing deployment evidence screenshots
+
+Example Terraform verification commands:
+
+```bash
+terraform state list
+terraform output
+```
+
+---
+
+### GitHub Actions Validation
+
+The repository includes an automated Terraform validation workflow.
+
+The workflow performs:
+
+- Terraform formatting checks
+- Terraform initialization
+- Terraform validation
+
+This ensures infrastructure code quality before changes are merged into the main branch.
+
+---
+
+### Deployment Constraints
+
+The AWS Academy sandbox environment introduced temporary resource lifecycles and restricted IAM permissions.
+
+Because of these limitations:
+
+- Terraform deployment execution was performed manually using temporary sandbox credentials
+- Automated AWS deployment through GitHub Actions was documented as a future production enhancement
+- IAM role deployment was designed but not enabled in the final sandbox deployment
+
+These constraints were documented as architectural decisions rather than treated as deployment failures.
