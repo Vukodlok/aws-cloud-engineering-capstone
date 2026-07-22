@@ -369,3 +369,87 @@ Production environments may use additional controls such as:
 - Object versioning
 - Lifecycle policies
 - Access logging
+
+## Project Evidence
+
+The following screenshots provide evidence of deployed AWS resources and automation workflows. Screenshots are organized by architecture component within the repository.
+
+---
+
+## Networking
+
+The networking layer establishes the foundation of the AWS environment through a dedicated VPC, subnet segmentation, and controlled routing.
+
+Included resources:
+
+- Amazon VPC
+- Public subnet
+- Private subnet
+- Route table configuration
+
+Evidence:
+
+- [View Networking Screenshots](screenshots/networking/)
+
+---
+
+## Compute and Security
+
+The compute layer demonstrates the deployment of AWS compute resources with controlled network access.
+
+Included resources:
+
+- Amazon EC2 instance
+- Security group configuration
+- Inbound and outbound traffic rules
+
+Evidence:
+
+- [View Compute Screenshots](screenshots/compute/)
+
+---
+
+## Monitoring and Alerting
+
+The monitoring architecture provides operational visibility through AWS CloudWatch and automated notifications through Amazon SNS.
+
+Included resources:
+
+- CloudWatch alarms
+- SNS notification topic
+- SNS email subscription
+
+Evidence:
+
+- [View Monitoring Screenshots](screenshots/monitoring/)
+
+---
+
+## Storage
+
+The storage layer demonstrates secure object storage using Amazon S3.
+
+Included resources:
+
+- S3 bucket deployment
+- Server-side encryption configuration
+
+Evidence:
+
+- [View Storage Screenshots](screenshots/storage/)
+
+---
+
+## Infrastructure Automation
+
+Infrastructure validation is performed through GitHub Actions to ensure Terraform configuration quality before deployment.
+
+Included workflow checks:
+
+- Terraform formatting validation
+- Terraform initialization
+- Terraform validation
+
+Evidence:
+
+- [View Automation Screenshots](screenshots/automation/)
