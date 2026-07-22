@@ -110,3 +110,58 @@ The final architecture includes the following AWS components:
 - Terraform modules for infrastructure provisioning
 - GitHub Actions workflow for Terraform validation
 
+## Repository Structure
+
+The repository is organized to separate infrastructure components, deployment environments, documentation, and supporting project resources. This structure follows Terraform best practices by using reusable modules and environment-specific configurations.
+
+```text
+aws-cloud-engineering-capstone/
+│
+├── .github/
+│   └── workflows/
+│       └── terraform-validation.yml
+│
+├── diagrams/
+│   └── aws-cloud-architecture-diagram.png
+│   └── aws-cloud-architecture.drawio
+├── documentation/
+│   ├── AWS Cloud Engineering Capstone Project Final Report.pdf
+│   └── AWS Cloud Engineering Capstone Project Proposal.pdf
+│
+├── screenshots/
+│   ├── automation/
+│   ├── compute/
+│   ├── monitoring/
+│   ├── networking/
+│   └── storage/
+│
+├── terraform/
+│   │
+│   ├── environments/
+│   │   ├── dev/
+│   │   ├── prod/
+│   │   └── staging/
+│   │
+│   ├── modules/
+│       ├── compute/
+│       ├── monitoring/
+│       ├── network/
+│       └── storage/
+│
+├── .gitignore
+├── README.md
+```
+
+### Directory Purpose
+
+| Directory | Purpose |
+|-----------|---------|
+| `.github/workflows` | Stores GitHub Actions automation workflows |
+| `diagrams` | Contains architecture and network topology diagrams |
+| `docs` | Contains project documentation and design materials |
+| `screenshots` | Provides AWS console evidence of deployed resources |
+| `terraform/modules` | Contains reusable infrastructure components |
+| `terraform/environments` | Stores environment-specific Terraform configurations |
+| `terraform.tfvars.example` | Provides example configuration values without sensitive information |
+
+The modular Terraform structure allows infrastructure components to be independently maintained, tested, and reused across multiple environments while keeping resource configuration separate from environment-specific values.
