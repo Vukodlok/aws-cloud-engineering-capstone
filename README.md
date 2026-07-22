@@ -632,6 +632,47 @@ Because of these limitations:
 
 These constraints were documented as architectural decisions rather than treated as deployment failures.
 
+## Engineering Principles Applied
+
+Throughout the design and implementation of this project, several core cloud engineering principles guided architectural decisions:
+
+### Simplicity and Purpose-Driven Architecture
+
+The architecture was designed to satisfy business requirements while avoiding unnecessary complexity. Resources were added based on operational need rather than simply incorporating additional services.
+
+### Minimize Internet Exposure
+
+Services should not be exposed to the public internet unless there is a clear business requirement. The architecture uses network segmentation, private resources, and security groups to reduce unnecessary exposure and follow defense-in-depth principles.
+
+### Separation of Concerns
+
+Professional infrastructure projects separate responsibilities into maintainable components. Terraform modules were organized by function, including networking, compute, monitoring, and storage, allowing individual components to be developed, tested, and maintained independently.
+
+### Design for Extension
+
+The Terraform structure was designed to support future growth without requiring significant redesign. Environment-specific configurations, reusable modules, and variable-driven deployments allow additional environments and resources to be added as requirements evolve.
+
+### Define Interfaces Before Implementation
+
+Terraform modules were designed by first identifying required inputs and expected outputs. This approach creates predictable module behavior and improves reusability across different environments.
+
+### Reuse Proven Solutions
+
+Infrastructure components were designed to be reusable rather than rebuilt for each environment. Terraform modules and configuration patterns allow consistent deployment while reducing duplication and configuration errors.
+## Lessons Learned
+
+This project provided practical experience designing, deploying, and troubleshooting AWS infrastructure as Code principles.
+
+Key lessons learned included:
+
+- Cloud architectures must account for platform constraints, permission boundaries, and operational requirements.
+- Infrastructure as Code enables repeatable deployment even when cloud environments are temporary or recreated frequently.
+- Git history provides an audit trail of engineering decisions, troubleshooting steps, and architectural changes throughout the development process.
+- Security and operational excellence require intentional design decisions rather than relying on default configurations.
+- Cloud engineering requires balancing ideal production architecture with available resources, project scope, and business requirements.
+
+Working within AWS Academy sandbox limitations reinforced the importance of designing infrastructure that is reproducible, documented, and adaptable.
+
 ## Project Resources
 
 Additional project documentation and resources are available in this repository:
