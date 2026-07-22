@@ -3,9 +3,26 @@ Secure, automated, and reproducible AWS infrastructure built with Terraform, Git
 
 ---
 
+## Project at a Glance
+
+| Category | Implementation |
+|---|---|
+| Cloud Provider | Amazon Web Services (AWS) |
+| Infrastructure as Code | Terraform |
+| Compute | Amazon EC2 |
+| Networking | Amazon VPC, Public/Private Subnets, Route Tables |
+| Storage | Amazon S3 with Server-Side Encryption |
+| Monitoring | Amazon CloudWatch, CloudWatch Logs, CloudWatch Alarms |
+| Notifications | Amazon SNS |
+| CI/CD | GitHub Actions |
+| Architecture Principles | AWS Well-Architected Framework |
+| Security Focus | Least Privilege, Network Segmentation, Encryption |
+
+---
+
 ## Project Overview
 
-This project demonstrates the design and implementation of a secure, automated, modular, and reproducible cloud infrastructure on Amazon Web Services (AWS) using infrastructure as Code (IaC) with Terraform. The solution addresses common cloud engineering challenge by automating infrastructure deployment, implementing operational monitoring, and validating infrastructure changes through a GitHub Actions CI/CD workflow.  
+This project demonstrates the design and implementation of a secure, automated, modular, and reproducible cloud infrastructure on Amazon Web Services (AWS) using Infrastructure as Code (IaC) with Terraform. The solution addresses common cloud engineering challenges by automating infrastructure deployment, implementing operational monitoring, and validating infrastructure changes through a GitHub Actions CI/CD workflow.  
 
 The architecture provisions AWS networking, compute, monitoring, and storage resources while emphasizing automation, security, maintainability, and repeatability.  Throughout development, design decisions were guided by the AWS Well-Architected Framework and adapted where needed to accommodate AWS Academy sandbox limitations without compromising architectural best practices.  
 
@@ -38,7 +55,7 @@ This project addresses these challenges by designing an automated AWS environmen
 - Operational visibility through automated monitoring and alerting
 - Controlled infrastructure changes through version control and automated validation
 
-The solution was designed around two primary AWS Well_architected Framework pillars:
+The solution was designed around two primary AWS Well-Architected Framework pillars:
 
 - **Security** - protecting resources through controlled access, network isolation, and secure configuration practices
 - **Operational Excellence** - enabling reliable operations through automation, monitoring, and repeatable processes
@@ -47,13 +64,13 @@ The solution was designed around two primary AWS Well_architected Framework pill
 
 ## Project Objectives
 
-The goal of this project was to create a production-style AWS environment that  demonstrates practical cloud engineering skills.
+The goal of this project was to create a production-style AWS environment that demonstrates practical cloud engineering skills.
 
 The primary objectes were:
 
 | Objective | Implementation |
 |-----------|----------------|
-| Automate infrastructure deployment | Terraform modules for AWS resource  provisioning |
+| Automate infrastructure deployment | Terraform modules for AWS resource provisioning |
 | Create a secure network foundation | Amazon VPC with public/private subnet separation |
 | Deploy cloud compute resources | Amazon EC2 infrastructure managed through Terraform |
 | Implement monitoring and alerting | Amazon CloudWatch metrics, logs, alarms, and SNS notifications |
@@ -265,7 +282,7 @@ The following architectural decisions were made during development.
 
 ---
 
-### Infrastructure as COde with Terraform
+### Infrastructure as Code with Terraform
 
 Terraform was selected as the infrastructure provisioning tool because it enables consistent, repeatable, and version-controlled AWS deployments.
 
@@ -297,7 +314,7 @@ This structure improves maintainability and allows future expansion into additio
 
 ### Network Segmentation
 
-The architecture uses separate public and private subnets within an AMazon VPC.
+The architecture uses separate public and private subnets within an Amazon VPC.
 
 The design follows defense-in-depth principles:
 
@@ -320,9 +337,9 @@ The implementation includes:
 - Security group rules managed through Terraform
 - Infrastructure deployed through code rather than manual configuration
 
-The original design included IAM roles and AWS Susyems Manager Session Manager to provide secure administrative access without SSH keys or exposed inbound ports.
+The original design included IAM roles and AWS Systems Manager Session Manager to provide secure administrative access without SSH keys or exposed inbound ports.
 
-Due to AWS Academy sandbox permission restrictions, IAM role creation could not be fully implemented during deployment.  The recommended production architecture retinas this design using IAM roles and temporary AWS-managed credentials.
+Due to AWS Academy sandbox permission restrictions, IAM role creation could not be fully implemented during deployment.  The recommended production architecture retains this design using IAM roles and temporary AWS-managed credentials.
 
 --- 
 
@@ -344,7 +361,7 @@ The AWS Academy sandbox environment and project scope made the additional cost a
 
 The original design considered AWS native CI/CD including CodePipeline, CodeBuild, and CodeDeploy.
 
-The final implementation uses GitHub Actions because it more closely reflects common industry workflow where inffrastructure code is stored and validated directly from source control.
+The final implementation uses GitHub Actions because it more closely reflects common industry workflow where infrastructure code is stored and validated directly from source control.
 
 GitHub Actions provides:
 
@@ -458,7 +475,7 @@ Evidence:
 
 This project was developed within an AWS Academy sandbox environment.  While the sandbox provided the ability to design and deploy AWS infrastructure using Terraform, several production-level features were limited by account permissions, resource lifecycle constraints, and project scope.
 
-The following improvments represent recommended next steps for a production implementation.
+The following improvements represent recommended next steps for a production implementation.
 
 ---
 
@@ -466,7 +483,7 @@ The following improvments represent recommended next steps for a production impl
 
 The original design included GitHub Actions executing Terraform deployments automatically using secure AWS authentication.
 
-Due to AWS Academy sanbox restrictions, IAM administrative permissions required for configuring OpenID Connect (OIDC) federation were unavailable.
+Due to AWS Academy sandbox restrictions, IAM administrative permissions required for configuring OpenID Connect (OIDC) federation were unavailable.
 
 Future implementation:
 
@@ -533,7 +550,7 @@ Future security improvements could include:
 
 ### Multi-Environment Deployment
 
-The Terraform strucutre was designed to support mulitple environments:
+The Terraform structure was designed to support multiple environments:
 
 - Development
 - Staging
@@ -619,8 +636,8 @@ These constraints were documented as architectural decisions rather than treated
 
 Additional project documentation and resources are available in this repository:
 
-- [Final Project Paper](docs/final-project-paper.pdf)
-- [Project Proposal](docs/project-proposal.pdf)
+- [Final Project Paper](documentation/final-project-paper.pdf)
+- [Project Proposal](documentation/project-proposal.pdf)
 - [Architecture Diagrams](diagrams/)
 - [Deployment Evidence](screenshots/)
 
@@ -643,5 +660,5 @@ This project demonstrates practical experience with:
 
 Connect with me:
 
-- LinkedIn: [https://www.linkedin.com/in/mark-robuck/]
-- Portfolio Website: [https://mrmarkrobuck.wordpress.com/]
+- [LinkedIn](https://www.linkedin.com/in/mark-robuck/)
+- [Portfolio Website](https://mrmarkrobuck.wordpress.com/)
