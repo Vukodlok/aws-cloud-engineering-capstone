@@ -614,3 +614,34 @@ Because of these limitations:
 - IAM role deployment was designed but not enabled in the final sandbox deployment
 
 These constraints were documented as architectural decisions rather than treated as deployment failures.
+
+## Project Resources
+
+Additional project documentation and resources are available in this repository:
+
+- [Final Project Paper](docs/final-project-paper.pdf)
+- [Project Proposal](docs/project-proposal.pdf)
+- [Architecture Diagrams](diagrams/)
+- [Deployment Evidence](screenshots/)
+
+---
+
+## Author
+
+**Mark Robuck**
+
+Cloud Engineering Portfolio Project
+
+This project demonstrates practical experience with:
+
+- Amazon Web Services (AWS)
+- Terraform Infrastructure as Code
+- CloudWatch Monitoring and Alerting
+- GitHub Actions CI/CD Workflows
+- Cloud Security Best Practices
+- AWS Well-Architected Framework Principles
+
+Connect with me:
+
+- LinkedIn: [https://www.linkedin.com/in/mark-robuck/]
+- Portfolio Website: [https://mrmarkrobuck.wordpress.com/]
